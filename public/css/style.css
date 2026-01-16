@@ -161,6 +161,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0; /* Prevents overflow on small screens */
+  align-items: center; /* Center content horizontally */
 }
 
 .input-field label {
@@ -171,6 +172,8 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
+  width: 100%;
 }
 
 .input-field input:not(.num-input) {
@@ -258,8 +261,8 @@ body {
   font-size: 1.75rem;
   background: transparent;
   border: none;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  color: #000000;
+  text-shadow: none;
   position: relative;
   z-index: 1;
   padding: 0;
@@ -272,7 +275,7 @@ body {
 }
 
 .num-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .buffer-input,
