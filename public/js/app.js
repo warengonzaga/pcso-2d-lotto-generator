@@ -38,11 +38,19 @@ function addCombinationRow() {
     <div class="input-group">
       <div class="input-field">
         <label for="num1-${combinationCount}">Number 1</label>
-        <input type="number" id="num1-${combinationCount}" class="num-input" min="0" max="31" value="0" required>
+        <div class="num-input-wrapper">
+          <div class="lotto-ball" data-ball-id="num1-${combinationCount}">
+            <input type="number" id="num1-${combinationCount}" class="num-input" min="0" max="31" value="0" required>
+          </div>
+        </div>
       </div>
       <div class="input-field">
         <label for="num2-${combinationCount}">Number 2</label>
-        <input type="number" id="num2-${combinationCount}" class="num-input" min="0" max="31" value="0" required>
+        <div class="num-input-wrapper">
+          <div class="lotto-ball" data-ball-id="num2-${combinationCount}">
+            <input type="number" id="num2-${combinationCount}" class="num-input" min="0" max="31" value="0" required>
+          </div>
+        </div>
       </div>
     </div>
     <div class="input-group">
@@ -66,11 +74,38 @@ function addCombinationRow() {
 
   container.appendChild(row);
 
+  // Assign random colors to the lotto balls
+  assignRandomBallColors(combinationCount);
+
   // Add input validation
   addInputValidation(combinationCount);
 
   // Update cost monitor
   updateCostMonitor();
+}
+
+/**
+ * Assign random colors to lotto balls
+ */
+function assignRandomBallColors(id) {
+  const ballColors = ['ball-red', 'ball-blue', 'ball-yellow', 'ball-green', 'ball-orange', 'ball-pink', 'ball-purple', 'ball-cyan'];
+  
+  const ball1 = document.querySelector(`[data-ball-id="num1-${id}"]`);
+  const ball2 = document.querySelector(`[data-ball-id="num2-${id}"]`);
+  
+  if (ball1 && ball2) {
+    // Get two different random colors
+    const color1 = ballColors[Math.floor(Math.random() * ballColors.length)];
+    let color2 = ballColors[Math.floor(Math.random() * ballColors.length)];
+    
+    // Ensure the second ball has a different color
+    while (color2 === color1) {
+      color2 = ballColors[Math.floor(Math.random() * ballColors.length)];
+    }
+    
+    ball1.classList.add(color1);
+    ball2.classList.add(color2);
+  }
 }
 
 /**
