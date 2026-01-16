@@ -21,7 +21,11 @@
       <section class="form-section">
         <div class="section-header">
           <h2>Your Combinations</h2>
+          <button type="button" id="importBtn" class="import-btn-header">
+            📂 Import
+          </button>
         </div>
+        <input type="file" id="importFile" accept=".txt" style="display: none;">
 
         <div id="combinationsContainer" class="combinations-container">
           <!-- Combination rows will be added here dynamically -->
@@ -30,11 +34,6 @@
         <button type="button" id="addCombinationBtn" class="add-btn">
           <span class="btn-icon">+</span> Add Combination
         </button>
-
-        <button type="button" id="importBtn" class="import-btn">
-          📂 Import Combinations
-        </button>
-        <input type="file" id="importFile" accept=".txt" style="display: none;">
 
         <!-- Live Cost Monitor -->
         <div id="costMonitor" class="cost-monitor">

@@ -166,11 +166,18 @@ function generateCompleteOutput(combinations) {
     hour12: true
   });
 
+  // Get version from global variable (set by app.js)
+  const version = typeof appVersion !== 'undefined' && appVersion ? `v${appVersion}` : '';
+  const versionLine = version ? `PCSO 2D Lotto Generator ${version}` : '';
+
   allLines.push('');
   allLines.push(divider);
   allLines.push(`Total Combinations: ${totalCombinations}`);
   allLines.push(`Total Amount: ₱${totalCost.toLocaleString()}`);
   allLines.push(`Generated: ${timestamp}`);
+  if (versionLine) {
+    allLines.push(versionLine);
+  }
 
   return allLines.join('\n');
 }
