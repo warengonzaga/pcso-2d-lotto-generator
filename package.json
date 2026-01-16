@@ -1,15 +1,15 @@
 {
-  "name": "lotto-number-generator",
+  "name": "pcso-2d-lotto-generator",
   "version": "1.0.0",
-  "description": "Mobile-first lotto number generator with buffer system",
+  "description": "A mobile-first PCSO 2D lotto number generator with buffer system and Rambolito mode support",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["lotto", "number-generator", "buffer", "rambolito"],
-  "author": "",
-  "license": "MIT",
+  "keywords": ["pcso", "2d", "lotto", "number-generator", "buffer", "rambolito", "philippines"],
+  "author": "Waren Gonzaga",
+  "license": "GPL-3.0",
   "dependencies": {
     "express": "^4.18.2"
   }

@@ -1,154 +1,174 @@
-# 🎰 Lotto Number Generator
+# PCSO 2D Lotto Generator
 
-A mobile-first Node.js web application for generating PCSO 2D lotto number combinations with an intelligent buffer system. Generate multiple number variations and export them in the standard lotto format.
+[![License](https://img.shields.io/github/license/warengonzaga/pcso-2d-lotto-generator)](https://github.com/warengonzaga/pcso-2d-lotto-generator/blob/main/LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/warengonzaga/pcso-2d-lotto-generator)](https://github.com/warengonzaga/pcso-2d-lotto-generator/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/warengonzaga/pcso-2d-lotto-generator)](https://github.com/warengonzaga/pcso-2d-lotto-generator/network/members)
+
+A mobile-first web application for generating PCSO 2D lotto number combinations with buffer system and Rambolito mode support. Perfect for Filipino lotto players looking to optimize their number combinations.
 
 ## Features
 
-- **Mobile-First Design**: Optimized for mobile devices with responsive desktop support
-- **Buffer System**: Generate number variations automatically
-- **Rambolito Mode**: Position-independent winning combinations
-- **Multiple Combinations**: Add as many number combinations as you need
-- **Export Options**: Copy to clipboard or download as `.txt` file
-- **Clean Output Format**: `01 02 20 R` (number-number-amount-rambolito)
+- **PCSO 2D Number Range (0-31)** - Official Philippine lotto number range
+- **Buffer System (0-2)** - Automatically generate nearby number variations
+- **Rambolito Mode** - Position-independent winning combinations
+- **Live Cost Monitoring** - Real-time bet amount calculation (₱20 per combination)
+- **Multiple Combinations** - Add unlimited number combinations
+- **Export Options** - Copy to clipboard or download as text file
+- **Mobile-First Design** - Optimized for mobile devices with dark mode theme
+- **No Backend Required** - Runs entirely in your browser (client-side)
 
-## How Buffer System Works
+## Quick Start
 
-### With Rambolito (Position Doesn't Matter)
-When Rambolito is selected, no additional combinations are generated because position doesn't matter. The original combination already covers all variations.
+### Online (GitHub Pages)
 
-**Example:**
-- Input: 1, 2 with Buffer = 1, Rambolito = ✓
-- Output: `01 02 20 R` (only one line)
+Visit the live version at: **https://warengonzaga.github.io/pcso-2d-lotto-generator**
 
-### Without Rambolito (Exact Position)
-When Rambolito is NOT selected, the buffer generates all +/- variations to cover exact positions.
+### Local Development
 
-**Example:**
-- Input: 1, 2 with Buffer = 1, Rambolito = ✗
-- Output:
-  ```
-  00 02 20
-  01 01 20
-  01 02 20
-  01 03 20
-  02 02 20
-  ```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/warengonzaga/pcso-2d-lotto-generator.git
+   cd pcso-2d-lotto-generator
+   ```
 
-The buffer adds/subtracts values from each number independently (within 0-31 range for PCSO 2D).
-
-## Installation
-
-1. Clone or download this repository
-2. Install dependencies:
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-## Usage
-
-1. Start the server:
+3. **Start the server**
    ```bash
    npm start
    ```
 
-2. Open your browser and navigate to:
+4. **Open your browser**
    ```
    http://localhost:3000
    ```
 
-3. Enter your number combinations:
-   - **Number 1 & 2**: Enter PCSO 2D numbers between 0-31
-   - **Amount**: Bet amount in PHP (default: 20)
-   - **Buffer**: Set buffer value (0-2)
-   - **Rambolito**: Check if position doesn't matter
+## How It Works
 
-4. Click **"Add Combination"** to add more number sets
+### Buffer Logic
 
-5. Click **"Generate Numbers"** to create the output
+The buffer system generates nearby number variations based on your settings:
 
-6. Use **"Copy to Clipboard"** or **"Download"** to save your numbers
+- **Buffer 0**: Exact number only
+- **Buffer 1**: Original number ± 1 variation
+- **Buffer 2**: Original number ± 2 variations
 
-## Output Format
+### Rambolito Mode
 
-Each line follows this format:
+Rambolito mode determines how positions are handled:
+
+| Mode | Buffer | Behavior |
+|------|--------|----------|
+| **Checked** | Any | Position doesn't matter (7-26 = 26-7) |
+| **Unchecked** | 0 | Exact position only |
+| **Unchecked** | ≥1 | Auto-corrects position (includes reversals) |
+
+### Output Format
+
+Generated combinations follow this format:
 ```
-01 02 20 R
+07 26 20 R
 ```
+- First number: **07**
+- Second number: **26**
+- Amount: **20** (in pesos)
+- Rambolito flag: **R** (if enabled)
 
-- First two digits: First number (padded to 2 digits)
-- Next two digits: Second number (padded to 2 digits)
-- Amount: Bet amount in PHP
-- R: Rambolito flag (omitted if not Rambolito)
+## Usage Example
 
-## Technical Details
+1. Enter your two lucky numbers (0-31)
+2. Set your bet amount per combination (default: ₱20)
+3. Choose buffer level (0-2)
+4. Check/uncheck Rambolito mode
+5. Add more combinations if needed
+6. Click "Generate Numbers"
+7. Copy or download your combinations
 
-### Project Structure
+## Tech Stack
+
+- **Backend:** Node.js with Express
+- **Frontend:** Vanilla HTML, CSS, JavaScript (no frameworks)
+- **Theme:** Dark mode with neon purple/violet aesthetic
+- **Hosting:** GitHub Pages (static frontend)
+
+## Project Structure
+
 ```
-lotto-number-generator/
+pcso-2d-lotto-generator/
+├── .github/
+│   └── copilot-instructions.md
+├── public/
+│   ├── css/
+│   │   └── style.css          # Dark theme styles
+│   ├── js/
+│   │   ├── generator.js       # Core buffer logic
+│   │   └── app.js             # UI interactions
+│   └── index.html             # Main HTML structure
+├── server.js                  # Express server
 ├── package.json
 ├── .gitignore
-├── server.js                 # Express server
-├── public/
-│   ├── index.html           # Main HTML page
-│   ├── css/
-│   │   └── style.css        # Mobile-first styles
-│   └── js/
-│       ├── app.js           # UI logic
-│       └── generator.js     # Core buffer logic
+├── AGENTS.md                  # AI agent instructions
+├── LICENSE                    # GPL-3.0 License
 └── README.md
 ```
 
-### Technology Stack
-- **Backend**: Express.js
-- **Frontend**: Vanilla HTML, CSS, JavaScript
-- **No Build Tools**: Simple and straightforward
+## Contributing
 
-### Buffer Algorithm
+Contributions are welcome! This project follows the [Clean Commit Convention](https://github.com/wgtechlabs/clean-commit) by @wgtechlabs.
 
-The buffer system generates combinations based on this logic:
+### Commit Format
 
-```javascript
-// Rambolito: No additional combinations
-if (isRambolito) {
-  return [[num1, num2]];
-}
-
-// Exact: Generate all +/- buffer variations
-for (let i = -buffer; i <= buffer; i++) {
-  for (let j = -buffer; j <= buffer; j++) {
-    const newNum1 = num1 + i;
-    const newNum2 = num2 + j;
-    // Only include if within 0-31 range (PCSO 2D)
-    if (newNum1 >= 0 && newNum1 <= 31 && newNum2 >= 0 && newNum2 <= 31) {
-      combinations.add([newNum1, newNum2]);
-    }
-  }
-}
+```
+<emoji> <type>: <description>
 ```
 
-## Development
+**Example:**
+```bash
+📦 new: add export to CSV feature
+🔧 update: improve buffer calculation
+🐛 fix: correct rambolito logic
+📖 docs: update readme with examples
+```
 
-To modify the application:
+See `.github/copilot-instructions.md` and `AGENTS.md` for detailed guidelines.
 
-1. **Generator Logic**: Edit `public/js/generator.js` for buffer calculations
-2. **UI Logic**: Edit `public/js/app.js` for form interactions
-3. **Styling**: Edit `public/css/style.css` for appearance
-4. **Layout**: Edit `public/index.html` for structure
+### Development Workflow
 
-## Browser Support
-
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-- Requires JavaScript enabled
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes following the clean-commit convention
+4. Test thoroughly on mobile and desktop
+5. Commit your changes (`git commit -m '📦 new: add amazing feature'`)
+6. Push to your branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request to `main` branch
 
 ## License
 
-MIT License
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
+## Author
 
-Feel free to submit issues or pull requests for improvements.
+Created by **Waren Gonzaga**
+
+- GitHub: [@warengonzaga](https://github.com/warengonzaga)
+- Website: [warengonzaga.com](https://warengonzaga.com)
+
+## Disclaimer
+
+This tool is for entertainment and convenience purposes only. Please play responsibly. The author is not responsible for any losses incurred from using this application. Gambling can be addictive - seek help if needed.
+
+## Support
+
+If you find this project helpful, please consider:
+
+- Giving it a star on GitHub
+- Sharing it with fellow lotto players
+- Contributing improvements
+- Reporting issues or bugs
 
 ---
 
-Made with ❤️ for lotto enthusiasts
+Made with ❤️ for Filipino lotto players

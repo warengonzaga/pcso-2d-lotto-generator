@@ -14,5 +14,5 @@ app.get('/', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Lotto Number Generator is running on http://localhost:${PORT}`);
+  console.log(`PCSO 2D Lotto Generator is running on http://localhost:${PORT}`);
 });

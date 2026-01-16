@@ -102,7 +102,7 @@ Understanding the buffer logic is essential when modifying generator.js:
 ## File Structure
 
 ```
-lotto-number-generator/
+pcso-2d-lotto-generator/
 ├── .github/
 │   └── copilot-instructions.md
 ├── public/
