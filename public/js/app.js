@@ -563,7 +563,14 @@ function importBackup(event) {
  */
 async function fetchAppVersion() {
   try {
-    const response = await fetch('/api/version');
+    // Try fetching from static version.json first (for GitHub Pages)
+    let response = await fetch('version.json');
+    
+    // If version.json doesn't exist, try the API endpoint (for local server)
+    if (!response.ok) {
+      response = await fetch('/api/version');
+    }
+    
     if (response.ok) {
       const data = await response.json();
       
