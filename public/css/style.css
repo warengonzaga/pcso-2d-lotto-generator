@@ -266,6 +266,15 @@ body {
   position: relative;
   z-index: 1;
   padding: 0;
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield;
+}
+
+/* Hide number input spinners */
+.num-input::-webkit-outer-spin-button,
+.num-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .num-input:focus {
