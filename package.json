@@ -1,6 +1,6 @@
 {
   "name": "pcso-2d-lotto-generator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A mobile-first PCSO 2D lotto number generator with buffer system and Rambolito mode support",
   "main": "server.js",
   "scripts": {
