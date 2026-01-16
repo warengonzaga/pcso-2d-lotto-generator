@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('printBtn').addEventListener('click', printOutput);
   document.getElementById('downloadBtn').addEventListener('click', downloadOutput);
   document.getElementById('exportBtn').addEventListener('click', exportBackup);
+  document.getElementById('clearOutputBtn').addEventListener('click', clearOutput);
   document.getElementById('importBtn').addEventListener('click', () => {
     document.getElementById('importFile').click();
   });
@@ -361,6 +362,23 @@ function downloadOutput() {
   URL.revokeObjectURL(url);
 
   showCopyFeedback('Downloaded!');
+}
+
+/**
+ * Clear the generated output and hide the output section
+ */
+function clearOutput() {
+  const outputSection = document.getElementById('outputSection');
+  const outputArea = document.getElementById('outputArea');
+  
+  // Clear the textarea
+  outputArea.value = '';
+  
+  // Hide the output section with a fade effect
+  outputSection.style.display = 'none';
+  
+  // Show feedback
+  showCopyFeedback('Output cleared!');
 }
 
 /**
